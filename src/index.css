@@ -12,6 +12,30 @@
     }
 }
 
+@keyframes float-cloud {
+    0% {
+        transform: translateX(-100%) translateY(0);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 0.8;
+    }
+
+    90% {
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: translateX(100vw) translateY(0);
+        opacity: 0;
+    }
+}
+
+.cloud-animation {
+    animation: float-cloud linear infinite;
+}
+
 body {
     @apply bg-gradient-to-br from-blue-500 to-purple-600 min-h-screen text-white;
     font-family: 'Inter', sans-serif;

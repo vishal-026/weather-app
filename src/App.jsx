@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import SearchBar from './components/SearchBar';
 import WeatherCard from './components/WeatherCard';
 import IndiaSelector from './components/IndiaSelector';
+import CloudBackground from './components/CloudBackground';
 import { getCoordinates, getWeather } from './api/weather';
 
 function App() {
@@ -32,8 +33,9 @@ function App() {
     }, []);
 
     return (
-        <div className="min-h-screen flex items-center justify-center p-4">
-            <div className="w-full max-w-4xl">
+        <div className="min-h-screen flex items-center justify-center p-4 relative overflow-hidden">
+            <CloudBackground />
+            <div className="w-full max-w-4xl z-10">
                 <header className="mb-10 text-center">
                     <h1 className="text-4xl font-bold text-white mb-2 drop-shadow-md">Atmosphere</h1>
                     <p className="text-white/80">Premium Weather Forecast</p>
