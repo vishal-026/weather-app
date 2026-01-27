@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import SearchBar from './components/SearchBar';
 import WeatherCard from './components/WeatherCard';
+import IndiaSelector from './components/IndiaSelector';
 import { getCoordinates, getWeather } from './api/weather';
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
                     <p className="text-white/80">Premium Weather Forecast</p>
                 </header>
 
+                <IndiaSelector onSelect={fetchWeather} />
                 <SearchBar onSearch={fetchWeather} />
 
                 {loading && (
