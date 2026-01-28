@@ -22,6 +22,17 @@ export async function getWeather(lat, lon) {
     if (!response.ok) throw new Error('Failed to fetch weather data');
     return response.json();
 }
+const REVERSE_GEO_API_URL = 'https://api.bigdatacloud.net/data/reverse-geocode-client';
+
+export async function getCityName(lat, lon) {
+    const response = await fetch(`${REVERSE_GEO_API_URL}?latitude=${lat}&longitude=${lon}&localityLanguage=en`);
+    if (!response.ok) throw new Error('Failed to fetch location name');
+    const data = await response.json();
+    return {
+        name: data.locality || data.city || data.principalSubdivision,
+        country: data.countryName
+    };
+}
 
 export const weatherCodes = {
     0: 'Clear sky',

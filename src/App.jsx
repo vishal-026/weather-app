@@ -4,7 +4,7 @@ import WeatherCard from './components/WeatherCard';
 import IndiaSelector from './components/IndiaSelector';
 import CloudBackground from './components/CloudBackground';
 import LocationButton from './components/LocationButton';
-import { getCoordinates, getWeather } from './api/weather';
+import { getCoordinates, getWeather, getCityName } from './api/weather';
 
 function App() {
     const [weatherData, setWeatherData] = useState(null);
@@ -27,8 +27,14 @@ function App() {
             } else {
                 lat = cityOrCoords.lat;
                 lon = cityOrCoords.lon;
-                name = "Current Location";
-                country = "GPS";
+                try {
+                    const locationData = await getCityName(lat, lon);
+                    name = locationData.name;
+                    country = locationData.country;
+                } catch (e) {
+                    name = "Current Location";
+                    country = "GPS";
+                }
             }
 
             setLocation({ name, country });
